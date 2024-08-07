@@ -15,7 +15,7 @@ void Ball::Resize(Vector2 old, Vector2 neew) {
 }
 
 void Ball::Update() {
-  Vector2 vel;
+  Vector2 vel = {0, 0};
   // TODO: update ball pos/trajectory based on angle
   pos += vel * GetFrameTime();
   pos = BallBoundaryCheck(pos, size);
@@ -28,5 +28,7 @@ Ball::~Ball() {}
 Rectangle Ball::GetRec() { return {pos.x, pos.y, size.x, size.y}; }
 
 void Ball::Reset() {
-  // TODO: reset ball pos and new random angle
+  pos = {GetWindowWidth() / 2,
+         GetWindowHeight() - BALL_BOTTOM_PADDING * size.y};
+  angle = GetRandomValue(91, 179);
 }

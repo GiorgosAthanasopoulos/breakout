@@ -15,7 +15,7 @@ void Paddle::Resize(Vector2 old, Vector2 neew) {
 }
 
 void Paddle::Update() {
-  Vector2 vel;
+  Vector2 vel = {0, 0};
   if (IsKeyDown(KEY_PADDLE_MOVE_LEFT) && IsKeyDown(KEY_PADDLE_MOVE_RIGHT)) {
     vel.x = 0;
   } else if (IsKeyDown(KEY_PADDLE_MOVE_LEFT)) {
