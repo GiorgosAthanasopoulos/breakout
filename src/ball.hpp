@@ -9,10 +9,16 @@ public:
   void Draw();
   ~Ball();
 
-  Rectangle GetRec();
   void Reset();
 
+  Vector2 GetPos();
+  float GetRadius();
+  Vector2 GetSpeed();
+
+  void SetPos(Vector2 pos);
+  void SetSpeed(Vector2 speed);
+
 private:
-  Vector2 pos, size, speed;
-  float angle;
+  Vector2 pos, speed;
+  float radius;
 };

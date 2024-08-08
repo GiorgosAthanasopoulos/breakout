@@ -13,6 +13,7 @@ void operator+=(Vector2 &a, Vector2 b) {
   a.y += b.y;
 }
 Vector2 operator*(Vector2 a, float b) { return {a.x * b, a.y * b}; }
+Vector2 operator+(Vector2 a, Vector2 b) { return {a.x + b.x, a.y + b.y}; }
 
 Vector2 CalculateSize(float sizeToWinSizeRatio) {
   return GetWindowSize() / sizeToWinSizeRatio;
@@ -37,18 +38,14 @@ Vector2 PaddleBoundaryCheck(Vector2 pos, Vector2 size) {
   return pos;
 }
 
-Vector2 BallBoundaryCheck(Vector2 pos, Vector2 size) {
-  if (pos.x < 0) {
-    pos.x = 0;
+Vector2 AssertTextFitsInViewport(const char *text, float fontSize,
+                                 Vector2 maxSize) {
+  float textW = MeasureText(text, fontSize);
+
+  while (textW > maxSize.x || fontSize > maxSize.y) {
+    fontSize--;
+    textW = MeasureText(text, fontSize);
   }
-  if (pos.y < 0) {
-    pos.y = 0;
-  }
-  if (pos.x > GetWindowWidth() - size.x) {
-    pos.x = GetWindowWidth() - size.x;
-  }
-  if (pos.y > GetWindowHeight() - size.y) {
-    pos.y = GetWindowHeight() - size.y;
-  }
-  return pos;
+
+  return {textW, fontSize};
 }

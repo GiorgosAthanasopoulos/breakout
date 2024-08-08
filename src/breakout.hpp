@@ -22,5 +22,22 @@ private:
   Ball ball;
   std::vector<Block> blocks;
 
+  bool lost, won, paused;
+  float gameTimer;
+  int score;
+
   void Restart();
+
+  void HandleLost();
+  void HandleWon();
+  void HandlePaused();
+  void HandleBlocks();
+  void HandlePaddle();
+  void HandleTimers();
+
+  void DrawLost();
+  void DrawWon();
+  void DrawPaused();
+  void DrawEntities();
+  void DrawUI();
 };
